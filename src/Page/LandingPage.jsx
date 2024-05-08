@@ -6,6 +6,7 @@ import Footer from "../Components/LandingPage Components/Footer";
 import Features from "../Components/LandingPage Components/Features";
 import Faq from "../Components/LandingPage Components/Faq";
 import Aos from "aos";
+import Testimonials from "../Components/LandingPage Components/Testimonials";
 
 
 export default function LandingPage() {
@@ -21,6 +22,7 @@ export default function LandingPage() {
       <Header />
       <Banner/>
       <Features/>
+      <Testimonials/>
       <Faq/>
       <Footer/>
       </>

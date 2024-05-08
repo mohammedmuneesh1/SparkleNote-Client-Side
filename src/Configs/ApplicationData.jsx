@@ -51,13 +51,13 @@ export const appFeatures = [
     id:4,
     logo:<TbClockStar  className="text-blue-600 text-2xl" />,
     heading:"Go back in time",
-    description:"Notes are backed up with every change, so you can see what you noted last week or last month."
+    description:"Your notes are automatically backed up with every change, ensuring you can easily revisit past ideas from weeks or months ago."
   },
   {
     id:5,
     logo:<GiFlatPlatform className="text-blue-600 text-2xl" /> ,
     heading:"Cross-Platform Sync",
-    description:"Access your notes from anywhere with synchronization across all your devices."
+    description:"Access your notes from anywhere with ease, thanks to seamless synchronization that ensures your notes are always up-to-date across all your devices."
   },
   {
     id:6,
@@ -133,3 +133,25 @@ export const faqData = [
 
 
 
+//==================================APP USERS TESTIMONIALS DATA START HERE===================================================================================
+export const testimonialsData = [{
+  id:"review01",
+  name:'Sarah Lee',
+  userImage:"https://images.unsplash.com/photo-1511485977113-f34c92461ad9?crop=faces&amp;cs=tinysrgb&amp;fit=crop&amp;fm=jpg&amp;ixid=MnwxfDB8MXxhbGx8fHx8fHx8fHwxNjIwMTQ5ODEx&amp;ixlib=rb-1.2.1&amp;q=80&amp;w=100&amp;h=100",
+  review:"I've tried countless note-taking apps, but none compare to this gem. Its intuitive interface and seamless synchronization make it a pleasure to use. Now, I can easily switch between devices without missing a beat",
+  designation:"Digital Marketing at Wipro",
+},{
+  id:"review02",
+  name:'James Jacob',
+  userImage:"https://images.unsplash.com/photo-1624224971170-2f84fed5eb5e?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=100&amp;h=100&amp;crop=faces&amp;q=80",
+  review:"As a busy professional, staying organized is crucial. Thanks to this note-taking app, I can stay on top of my tasks with ease. The synchronization feature ensures I never miss a beat, allowing me to focus on what truly matters",
+  designation:"Data Analyst at Samsung",
+},{
+  id:"review03",
+  name:'Alex Martinez',
+  userImage:"https://images.unsplash.com/photo-1463453091185-61582044d556?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;crop=faces&amp;fit=crop&amp;w=100&amp;h=100&amp;q=80",
+  review:"This app simplifies note-taking. With just titles and content, I capture ideas effortlessly. Whether quick thoughts or detailed outlines, it's my trusted companion for organizing on the fly.",
+  designation:"Student at Yale University"
+}]
+
+//==================================APP USERS TESTIMONIALS DATA END HERE===================================================================================
