@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { navbarData } from "../../Configs/ApplicationData";
+import { navbarData } from "../Configs/ApplicationData";
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -27,12 +27,12 @@ export default function Header() {
       </div>
 
       <div className="flex items-center ml-auto  space-x-2 sm:space-x-6">
-        <button className="font-semibold  text-[12px] sm:text-[15px] border-none outline-none">
+        <Link to="/login" className="font-semibold  text-[12px] sm:text-[15px] border-none outline-none">
           Login
-        </button>
-        <button className=" px-2 sm:px-4  py-1 sm:py-2 text-sm rounded-sm font-bold text-white border-2 border-[#007bff] bg-[#007bff] transition-all ease-in-out duration-300 hover:bg-transparent hover:text-[#007bff]">
+        </Link>
+        <Link to="/signup" className=" px-2 sm:px-4  py-1 sm:py-2 text-sm rounded-sm font-bold text-white border-2 border-[#007bff] bg-[#007bff] transition-all ease-in-out duration-300 hover:bg-transparent hover:text-[#007bff]">
           Sign up
-        </button>
+        </Link>
 
         <button id="toggleOpen" className="lg:hidden" onClick={toggleMenu}>
           <svg

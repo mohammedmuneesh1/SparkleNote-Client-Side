@@ -19,7 +19,7 @@ export default function Testimonials() {
           data-aos-delay="200"
           className=" mt-1 sm:mt-2 font-bold  text-xl sm:text-2xl md:text-4xl lg:text-5xl tracking-wider text-center"
         >
-          Here's What Our Customers Are Saying
+          Here's What Our Users Are Saying
         </h1>
         <p
           data-aos="fade-in"

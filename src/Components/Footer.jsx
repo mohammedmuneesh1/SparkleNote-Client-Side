@@ -3,8 +3,8 @@ import { BsFillThreadsFill } from "react-icons/bs";
 import { FaFacebookSquare, FaTwitter } from "react-icons/fa";
 import { RiInstagramFill } from "react-icons/ri";
 import { Link } from "react-router-dom";
-import { navbarData } from "../../Configs/ApplicationData";
-import { footerTermsData } from "../../Configs/ApplicationData";
+import { navbarData } from "../Configs/ApplicationData";
+import { footerTermsData } from "../Configs/ApplicationData";
 export default function Footer() {
   return (
     <>
