@@ -23,7 +23,8 @@ export default function Banner() {
         schedule all in one place. With our integrated platform, you can
         seamlessly manage your entire workflow from start to finish.
       </p>
-      <button
+      <Link
+      to="/signup"
         data-aos="fade-up"
         data-aos-duration="500"
         data-aos-delay="300"
@@ -31,7 +32,7 @@ export default function Banner() {
         className="rounded-md bg-green-500  text-center font-sans text-base sm:text-lg tracking-wide sm:tracking-wider font-semibold  py-4 px-8 sm:px-12 hover:bg-green-600 hover:text-white hover:shadow-md transition ease-in-out duration-600 mb-8"
       >
         Start for free
-      </button>
+      </Link>
       <h3
         data-aos="fade-up"
         data-aos-duration="500"
@@ -40,7 +41,7 @@ export default function Banner() {
         className="tracking-wider text-base font-semibold"
       >
         Already have an account?
-        <Link className="ml-1 underline">Log in now</Link>
+        <Link to="/login" className="ml-1 underline">Log in now</Link>
       </h3>
     </div>
   );

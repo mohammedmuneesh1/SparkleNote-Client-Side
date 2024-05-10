@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
-import Swal from "sweetalert2";
-// import 'animate.css';
 import ReactPasswordChecklist from "react-password-checklist";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { swalFn } from "../SwalModal";
 import { IoMdPerson } from "react-icons/io";
 import { MdOutlineEmail } from "react-icons/md";
@@ -10,10 +8,19 @@ import { FaEye } from "react-icons/fa";
 // import SwalModal from "../SwalModal";
 // import SubmitModal from "./SubmitModal";
 export default function Signup() {
-    useEffect(()=>{
-        window.scrollTo(0,0)
+  const navigate = useNavigate();
 
-    },[]);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    const isAuth = () => {
+        const token = localStorage.getItem("token");
+        if (token && token !== "undefined") {
+            navigate("/note");
+        }
+    };
+    isAuth();
+}, []);
+
 
 
     const[loading,setLoading] = useState(false);
@@ -141,7 +148,7 @@ const signUp =  (e) => {
                   type="text"
                   autoComplete="off"
                   required
-                  className="w-full bg-transparent text-sm border-b border-gray-300 focus:border-yellow-400 px-2 py-3 outline-none"
+                  className="w-full bg-transparent text-sm  border-b border-gray-300 focus:border-yellow-400 px-2 py-3 outline-none"
                   placeholder="Enter name"
                 />
              <IoMdPerson className="absolute right-2 h-[18px] w-[18px]" />

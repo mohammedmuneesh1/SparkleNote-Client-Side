@@ -1,6 +1,5 @@
 import Swal from "sweetalert2";
-
-export const swalFn = (icon, text, timer = null) => {
+export const swalFn = (icon, text, timer = null,confirm) => {
   const swalConfigure = {
     icon: icon || "warning",
     showConfirmButton: false,

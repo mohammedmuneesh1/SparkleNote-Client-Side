@@ -4,6 +4,8 @@ import LandingPage from "../Page/LandingPage";
 import LandingPageLayout from "../Layouts/LandingPageLayout";
 import Login from "../Components/LandingPage Components/Login";
 import Signup from "../Components/LandingPage Components/Signup";
+import NotePage from "../Page/NotePage";
+import ProtectedRoute from "../Utils/ProtectedRoute";
 
 export const appRouteLayout = createBrowserRouter([
   {
@@ -12,9 +14,8 @@ export const appRouteLayout = createBrowserRouter([
       { path: "/", element: <LandingPage /> },
       {path:"/login",element:<Login/>},
       {path:"/signup",element:<Signup/>}
-      
-      
     ],
   },
   { path: "*", element: <PageNotFound /> },
+  {path:"/note",element:< ProtectedRoute><NotePage/></ProtectedRoute>},
 ]);
