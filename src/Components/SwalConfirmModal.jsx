@@ -13,10 +13,6 @@ export const SwalConfirmModalFn = (title, text = "", ctext,cbtntext="yes") => {
         confirmButtonText: cbtntext,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
-        // buttons: {
-        //     confirm : {text:'Ubah',className:'bg-red-400'},
-        //     cancel : {className:"bg-green-300"}
-        // },
         reverseButtons: true
     }).then((result) => {
         if (result.isConfirmed) {

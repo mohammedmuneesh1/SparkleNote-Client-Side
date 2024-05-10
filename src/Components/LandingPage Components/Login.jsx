@@ -21,12 +21,12 @@ export default function Login() {
 
 
   return (
-    <div className="font-[sans-serif] bg-white text-white md:min-h-screen">
+    <div className="font-[sans-serif] bg-white text-white min-h-screen">
     <div className="grid md:grid-cols-2 items-center gap-8 h-screen">
-      <div data-aos="fade-down" data-aos-duration="900" data-aos-once="true" className="max-md:order-1 p-4">
+      <div data-aos="fade-down" data-aos-duration="900" data-aos-once="true" className="max-md:order-1 p-4 md:min-h-screen">
         <img
           src=" https://readymadeui.com/signin-image.webp"
-          className="lg:max-w-[90%] w-full h-full object-contain block mx-auto"
+          className="lg:max-w-[90%] max-w-full  h-full object-contain block mx-auto"
           alt="signup-svg"
         />
 

@@ -6,11 +6,10 @@ import { Outlet } from 'react-router-dom';
 export default function LandingPageLayout() {
 
     return (
-      <div className='max-w-screen mx-auto min-h-screen bg-green-400'>
+      <div className='max-w-screen mx-auto min-h-screen'>
       <Header/>
       <Outlet/>
       <Footer/>
-      
       </div>
     );
   }

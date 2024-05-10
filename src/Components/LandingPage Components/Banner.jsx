@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function Banner() {
   return (
-    <div className="flex flex-col max-w-screen bg-slate-100 min-h-[80vh] sm:h-[91vh] mt-20 sm:mt-0 sm:justify-center items-center">
+    <div className="flex flex-col max-w-screen bg-slate-100 min-h-[80vh] sm:h-[91vh] pt-16 sm:pt-0 sm:justify-center items-center">
       <h1
         data-aos="fade-up"
         data-aos-duration="500"

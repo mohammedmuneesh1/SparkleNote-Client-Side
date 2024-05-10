@@ -6,11 +6,11 @@ import Testimonials from "../Components/LandingPage Components/Testimonials";
 
 export default function LandingPage() {
   return (
-    <>
+    <div className="max-w-screen min-h-screen">
       <Banner />
       <Features />
       <Testimonials />
       <Faq />
-    </>
+    </div>
   );
 }
