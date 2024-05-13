@@ -58,6 +58,7 @@ const signUp = async (e) => {
           }
       
     } catch (error) {
+      console.log(error)
       setLoading(false)
       if(error.response.status === 409){
         swalFn("error",error.response.data.errorMessage,2000);
