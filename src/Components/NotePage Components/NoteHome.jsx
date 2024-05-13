@@ -196,7 +196,7 @@ else{
                 <h4 class=" text-xl text-left  sm:tracking-wide sm:text-2xl  text-gray-800  font-bold my-1">
                   {value.title}
                 </h4>
-                <p class="my-2 text-gray-800 text-base tracking-wide text-justify font-mono overflow-scroll">
+                <p class="my-2 text-gray-800 text-base tracking-wide text-justify font-mono">
                   {value.content.substring(0,60)}...
                 </p>
               </div>
