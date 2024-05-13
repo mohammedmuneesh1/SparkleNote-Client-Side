@@ -18,22 +18,20 @@ export default function NotePage() {
 
   const getAllCategory = async()=>{
     try {
-      const response = await Axios.get('/api/note/categories');
+       const response = await Axios.get(`/api/note/categories`)
       if(response.status ===200){
-
       return setCategories(response.data.data);
       }
     } catch (error) {
       return swalFn("error","Error while fetching categories",1500)
-      
     }
   }
+
 
   const getAllNotes = async()=>{
     try {
 
-      let apiUrl = `/api/note/notes?page=${currentPage}`;
-
+      let apiUrl=`/api/note/notes?page=${currentPage}`;
       if(getNoteQuery.category !== null ){
         apiUrl +=`&category=${getNoteQuery.category}` 
       }

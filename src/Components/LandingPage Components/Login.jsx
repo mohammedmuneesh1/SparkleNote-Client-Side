@@ -37,16 +37,16 @@ export default function Login() {
     if(response.status === 201){
       setLoading(false)
      return swalFn("success"," We've sent a verification email to your inbox. Please take a moment to confirm your email address.",3000)
-
    }
    if(response.status === 200){
-
-    localStorage.setItem("token",`${response?.data?.token}`)
+    const token = await response?.data?.token;
+    localStorage.setItem("token",token);
     setLoading(false)
-    swalFn("success","Welcome Back",3000)
-    return navigate("/note")
+    swalFn("success","Welcome Back",1500)
+    return navigate("/note");
  }
     } catch (error) {
+      console.log(error)
       setLoading(false)
       if(error.response.status === 404){
         swalFn("error",error.response.data.errorMessage,2000);

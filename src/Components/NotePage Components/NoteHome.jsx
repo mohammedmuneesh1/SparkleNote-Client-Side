@@ -167,13 +167,10 @@ else{
 
         {notes.length > 0 &&
           notes.map((value) => (
-            // <div
-            //   key={value._id}
-            //   class="max-w-sm md:max-w-xs xl:max-w-xsm h-56 flex flex-col justify-between  bg-white rounded-lg border border-gray-400 mb-6 py-5 px-4  "
-            // >
+        
             <div
               key={value._id}
-              class="max-w-md w-full h-56 flex flex-col justify-between bg-white rounded-lg border border-gray-400 mb-6 py-5 px-4"
+              className="max-w-md w-full h-56 flex flex-col justify-between bg-white rounded-lg border border-gray-400 mb-6 py-5 px-4"
             >
               <div className=" card-header flex  items-center justify-between ">
                 <h3>{value.categoryId.name}</h3>
@@ -193,10 +190,10 @@ else{
               </div>
 
               <div>
-                <h4 class=" text-xl text-left  sm:tracking-wide sm:text-2xl  text-gray-800  font-bold my-1">
+                <h4 className=" text-xl text-left  sm:tracking-wide sm:text-2xl  text-gray-800  font-bold my-1">
                   {value.title}
                 </h4>
-                <p class="my-2 text-gray-800 text-base tracking-wide text-justify font-mono">
+                <p className="my-2 text-gray-800 text-base tracking-wide text-justify font-mono">
                   {value.content.substring(0,60)}...
                 </p>
               </div>
