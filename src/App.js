@@ -10,6 +10,8 @@ function App() {
     Aos.init();
   }, []);
 
+
+
   return (
     <div>
       <RouterProvider router={appRouteLayout} />

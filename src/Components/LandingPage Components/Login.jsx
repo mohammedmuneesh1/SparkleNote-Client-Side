@@ -1,11 +1,15 @@
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { MdOutlineEmail, MdOutlinePassword } from 'react-icons/md';
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
+import { swalFn } from '../SwalModal';
+import Loading from '../Loading';
+import { Axios } from '../../Configs/Axios';
+import { noteContext } from '../../context/createContext';
 
 export default function Login() {
   const navigate = useNavigate();
-
+  const {loading,setLoading} = useContext(noteContext)
  
     useEffect(() => {
       window.scrollTo(0, 0);
@@ -16,7 +20,46 @@ export default function Login() {
           }
       };
       isAuth();
-  }, []);
+  }, [navigate]);
+
+
+  const loginFn = async(e)=>{
+    e.preventDefault();
+    try {
+
+      const email = e.target.email.value.trim();
+      const password = e.target.password.value.trim();
+      if (!email || !password ) {
+        return swalFn("warning","complete the form",1500)
+    }
+    setLoading(true)
+    let  response = await Axios.post('/api/user/login',{email,password});
+    if(response.status === 201){
+      setLoading(false)
+     return swalFn("success"," We've sent a verification email to your inbox. Please take a moment to confirm your email address.",3000)
+
+   }
+   if(response.status === 200){
+
+    localStorage.setItem("token",`${response?.data?.token}`)
+    setLoading(false)
+    swalFn("success","Welcome Back",3000)
+    return navigate("/note")
+ }
+    } catch (error) {
+      setLoading(false)
+      if(error.response.status === 404){
+        swalFn("error",error.response.data.errorMessage,2000);
+        return navigate("/login");
+      }
+      return swalFn("error","Error occured while login. Please try again after some time")
+    }
+  }
+
+
+  if(loading){
+    return <Loading/>;
+  }
 
 
 
@@ -34,7 +77,7 @@ export default function Login() {
       </div>
 
       <div  data-aos="fade-up" data-aos-duration="900" data-aos-once="true" className="flex items-center md:p-8 p-6 bg-[#0C172C] h-full lg:w-11/12 lg:ml-auto">
-        <form name="register_form"   className="max-w-lg w-full mx-auto">
+        <form name="login_form" onSubmit={loginFn}   className="max-w-lg w-full mx-auto">
       
           <div className="mb-12">
             <h3 className=" font-mono tracking-wide text-3xl md:text-5xl font-bold text-sky-400 text-center mb-4">

@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import ReactPasswordChecklist from "react-password-checklist";
 import { Link, useNavigate } from "react-router-dom";
 import { swalFn } from "../SwalModal";
 import { IoMdPerson } from "react-icons/io";
 import { MdOutlineEmail } from "react-icons/md";
 import { FaEye } from "react-icons/fa";
-// import SwalModal from "../SwalModal";
-// import SubmitModal from "./SubmitModal";
+import Loading from '../Loading';
+import { Axios } from "../../Configs/Axios";
+import { noteContext } from "../../context/createContext";
+
 export default function Signup() {
   const navigate = useNavigate();
-
   useEffect(() => {
     window.scrollTo(0, 0);
     const isAuth = () => {
@@ -19,46 +20,24 @@ export default function Signup() {
         }
     };
     isAuth();
-}, []);
+}, [navigate]);
 
 
-
-    const[loading,setLoading] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
-  const [showRepassword, setShowRepassword] = useState(false);
-  const [formdata, setFormdata] = useState({
-    pass: "",
-    repass: "",
-  });
+    const{loading,setLoading,showPassword, setShowPassword,showRepassword, setShowRepassword,formdata, setFormdata} = useContext(noteContext);
   
   
-//   const showAlert = (icon, text, timer = null) => {
-//     return <SwalModal timer={timer} icon={icon} text={text} />;
-//   };
 
 
-
-//   const togglePasswordVisibility = () => {
-//     setShowPassword(!showPassword);
-//   };
-
-//   const signUp =async (e) => {
-//     e.preventDefault();
-//     return <SwalModal timer={2000} icon={'warning'} text={'should agree with the terms and conditions.'} />;
-//   }
-
-const signUp =  (e) => {
+const signUp = async (e) => {
     e.preventDefault();
-    // return swalfn("error","thank god working");
+    try {
       const name = e.target.username.value.trim();
             const email = e.target.email.value.trim();
             const password = e.target.password.value.trim();
             const repassword = e.target.repassword.value.trim();
             const terms_conditions = e.target.terms_condition.checked;
-            
             if (!name || !email || !password || !repassword) {
                 return swalFn("warning","complete the form",1500)
-           
             }
             if( password !== repassword || password.length < 8 ||  !/[!@#$%^&*(),.?":{}|<>]/.test(password) || !/[A-Z]/.test(password)  ){
                 return swalFn("error","pasword should meet the conditions",1500);
@@ -68,59 +47,36 @@ const signUp =  (e) => {
                 return swalFn("warning","should agree with the terms and conditions. Check out our terms and conditions.",1500)
             }
             const obj = { name, email, password };
-            console.log(obj)
+            setLoading(true)
+            setFormdata({pass:'',repass:""})
+          let  response = await Axios.post('/api/user/registration',obj)
+          if(response.status === 201){
+            setLoading(false)
+             swalFn("success"," We've sent a verification email to your inbox. Please take a moment to confirm your email address.",3000)
+           return navigate('/login');
 
-            return swalFn("success","form submitted successfully")
-            
-
-    // return showAlert("error","thankyou working",2000)
-    // return <SwalModal timer={2000} icon={'warning'} text={'should agree with the terms and conditions.'} />;
+          }
+      
+    } catch (error) {
+      setLoading(false)
+      if(error.response.status === 409){
+        swalFn("error",error.response.data.errorMessage,2000);
+        return navigate("/login");
+      }
+      return swalFn("error","Error occured while registering. Try again after sometime. Thank you.",2000)
+    }
+  
+    
   }
     
 
-
-//     
-//     setLoading(true)
-//      let  response = await Axios.post('/user/register',obj)
-//      console.log(response);
-//        setLoading(false)
-//        setFormdata({pass:'',repass:""})
-//        window.scrollTo(0, 0);
-//        if(response.status == 201){
-//         return Swal.fire({
-//          icon:"success",
-//          text:response.data.message,
-//         })
-//        }
-
-//     }
-//     catch(err){
-//       setLoading(false)
-//       if(err.response){
-//         window.scrollTo(0, 0);
-//         return Swal.fire({
-//           icon:"error",
-//           text:err.response.data.message,
-//         })
-//       }
-//       window.scrollTo(0, 0);
-//       return Swal.fire({
-//         icon:"error",
-//         text:"an error occured while submitting the form. Please try again."
-//       })
-      
-
-//     }
-
-//   };
-
-//   if(loading){
-//     return <SubmitModal/>;
-//   }
+  if(loading){
+    return <Loading/>;
+  }
 
 
   return (
-    <div className="font-[sans-serif] bg-white text-white md:min-h-screen">
+    <div className="font-[sans-serif] bg-white text-white min-h-screen">
       <div className="grid md:grid-cols-2 items-center gap-8 min-h-screen">
         <div data-aos="fade-up" data-aos-duration="500" data-aos-once="true" className="max-md:order-1 p-4">
           <img
@@ -168,7 +124,7 @@ const signUp =  (e) => {
                   className="w-full bg-transparent text-sm border-b border-gray-300 focus:border-yellow-400 px-2 py-3 outline-none"
                   placeholder="Enter email"
                 />
-                 <MdOutlineEmail className='absolute right-2 w-[18px] h-[18px]' />
+                 <MdOutlineEmail className='absolute right-2 w-[18px] h-[18px] ' />
               </div>
             </div>
             {/*email end here*/}
@@ -186,7 +142,7 @@ const signUp =  (e) => {
                   className="w-full bg-transparent text-sm border-b border-gray-300 focus:border-yellow-400 px-2 py-3 outline-none"
                   placeholder="Enter password"
                 />
-                <FaEye onClick={() => setShowPassword(!showPassword)}  className="absolute right-2 h-[18px] w-[18px]" />
+                <FaEye onClick={() => setShowPassword(!showPassword)}  className="absolute right-2 h-[18px] w-[18px] hover:cursor-pointer" />
               </div>
             </div>
             {/*enter password start */}
@@ -221,7 +177,7 @@ const signUp =  (e) => {
                   className="w-full bg-transparent text-sm border-b border-gray-300 focus:border-yellow-400 px-2 py-3 outline-none"
                   placeholder="Re-Enter password"
                 />
-                <FaEye onClick={() => setShowPassword(!showPassword)}  className="absolute right-2 h-[18px] w-[18px]" />
+                <FaEye onClick={() => setShowRepassword(!showRepassword)}  className="absolute right-2 h-[18px] w-[18px] hover:cursor-pointer" />
               </div>
             </div>
             {/*Re-enter password end */}

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { FaPlus } from "react-icons/fa";
 import { FiLogOut } from "react-icons/fi";
 import { ImSearch } from "react-icons/im";
@@ -6,19 +6,23 @@ import { SwalConfirmModalFn } from "../SwalConfirmModal";
 import { useNavigate } from "react-router-dom";
 import { Modal } from "flowbite-react";
 import CreateNote from "./CreateNote";
+import { noteContext } from "../../context/createContext";
 
 
 
 
 export default function NoteHeader() {
-    const [openModal, setOpenModal] = useState(false);
+
+    const {openModal,setOpenModal} = useContext(noteContext)
+    const  {categories} = useContext(noteContext)
     const navigate = useNavigate()
     
     const logoutFn= async ()=>{
        const result =  await SwalConfirmModalFn("Do you want to log out?", "", "Successfully logged out","Logout");
-       if(result){ //if swalconfirmmodal function return true then execute the if condition 
+      
+       if(result){ 
+       localStorage.removeItem("token")
         navigate("/");
-    
        }
 
 
@@ -49,7 +53,7 @@ export default function NoteHeader() {
       </div>
 
       <Modal show={openModal} size="md" onClose={() => setOpenModal(false)} popup>
-    <CreateNote  closeModal={setOpenModal} btntitle={"Create Note"}/>
+    <CreateNote  closeModal={setOpenModal} btntitle={"Create Note"} categories={categories}/>
 </Modal>
 
 
