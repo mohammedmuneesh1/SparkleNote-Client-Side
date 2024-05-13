@@ -5,10 +5,11 @@ import { Axios } from '../Configs/Axios';
 import { swalFn } from '../Components/SwalModal';
 import { noteContext } from '../context/createContext';
 import { Pagination } from 'flowbite-react';
+import Loading from '../Components/Loading';
 
 export default function NotePage() {
 
-  const {setCategories,setNotes,updatePage,currentPage,setCurrentPage,getNoteQuery} = useContext(noteContext)
+  const {setCategories,setNotes,updatePage,currentPage,setCurrentPage,getNoteQuery,loading,setLoading} = useContext(noteContext)
   
   const onPageChange = (page) => {
     setCurrentPage(page);
@@ -44,8 +45,7 @@ export default function NotePage() {
       setNotes(response.data.data);
       }
     } catch (error) {
-
-       swalFn("error","Error while fetching notes",1500)
+      return swalFn("error","Error while fetching notes",1500)
     }
   }
 
@@ -58,11 +58,24 @@ export default function NotePage() {
 
 
 useEffect(()=>{
-  getAllCategory()
-  getAllNotes();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+  let fetchData = async ()=>{
+    try {
+      setLoading(true)
+      await Promise.all([getAllCategory(), getAllNotes()]);
+      setLoading(false)
+    } catch (error) {
+      return swalFn("error","error while fetching data. please relaod the page Thank you",2000)
+    }
+  }
+  fetchData();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
 },[updatePage,currentPage])
 
+
+
+if(loading){
+  return <Loading/>
+}
 
 
 
